@@ -82,7 +82,7 @@ func main() {
 	lg.Notify("*** Massive stress test of sensor reading, printing in the end summary statistical results")
 	lg.Notify("***************************************************************************************************")
 	// Uncomment/comment next line to suppress/increase verbosity of output
-	logger.ChangePackageLogLevel("dht", logger.InfoLevel)
+	_ = logger.ChangePackageLogLevel("dht", logger.InfoLevel)
 
 	// create context with cancellation possibility
 	ctx, cancel := context.WithCancel(context.Background())
@@ -125,7 +125,7 @@ func main() {
 			lg.Infof("Sensor = %v: Temperature = %v*C, Humidity = %v%% (retried %d times)",
 				sensorType, temperature, humidity, retried)
 		}
-
+		lg.Infof("输出温度：%f", temperature)
 		// publish temperature status to mqtt broker
 		publishToMqtt(cli, temperature)
 
